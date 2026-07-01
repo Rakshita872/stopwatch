@@ -2,7 +2,7 @@ let seconds = 0;
 let minutes= 0;
 let hours = 0;
 
-Let timer = null;
+let timer = null;
 let isRunning = false;
 
 // Start Stopwatch //
