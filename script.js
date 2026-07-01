@@ -53,3 +53,48 @@ function updateDisplay() {
 
 document.getElementById("stopwatch").innerText = `${h}:${m}:${s}`;
 }
+
+
+// Add Timer Variable //
+let countdown = null;
+let totalTime = 0;
+
+function startTimer() {
+  let min = parseInt(document.getElementById('minutes').value) || 0;
+  let sec = parseInt(document.getElementById('seconds').value) || 0;
+
+    totalTime = min * 60 + sec;
+    if(totalTime <= 0) {
+      alert("Please enter valid time");
+      return;
+    }
+    clearInterval(countdown);
+
+    countdown = setInterval(() => {
+      if (totalTime <= 0){
+        clearInterval(countdown);
+
+  document.getElementById('timer').innerText ="00.00";
+        alert("⏰ Time's Up!");
+        return;
+      }
+
+      totalTime--;
+
+      let displayMin = Math.floor(totalTime/60);
+      let displaySec = totalTime % 60;
+
+  document.getElementById('timer').innerText = `${String(displayMin).padStart(2,"0")}:${String(displaySec).padStart(2,"0")}`;
+},1000);
+
+}
+
+// Reset Timer //
+function resetTimer() {
+  clearInterval(countdown);
+
+document.getElementById("minutes").value = "";
+document.getElementById("seconds").value = "";
+document.getElementById("timer").innerText = "00:00";
+  totalTime = 0;
+}
